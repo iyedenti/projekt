@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>App</title>
+	<link rel="stylesheet" href="style.css" type="text/css"/>	
+	<script type="text/javascript"></script>	
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script>
+$(document).ready(function(){
+				$(".plus").click(function(){
+  						$(".table").append("<tr>"+"<td class='zadaca'>" + $("textarea").val() + "</td>"+"<td class='rem'>X</td>"+"</td>"+"<td class='add'>Yes</td>"+"</td>"+"<td class='edit'>Edit</td>"+"<td class='plusbtn'>+</td>"+"<td class='minusbtn'>-</td>"+"<td class='kol5'>0</td></tr>");
+ 
+						});
+  					
+
+			
+				$(".table").on("click", ".rem", function(){
+					$(this).parent().remove();
+				});
+				
+				$(".table").on("click", ".add", function(){
+					$(this).parent().removeClass().addClass('red');
+	    			});
+
+				$(".table").on("click", ".edit", function(){
+        				$(this).closest('tr').find(".zadaca").empty();
+						$(this).closest('tr').find(".zadaca").append( $("#my-input").val() );
+				});
+	    
+			/*var n=0;
+				$(".kol").on("click", function() {
+					$(".kol5").html(n++);					
+
+});
+				var n=0;
+				$(".kol2").on("click", function() {
+					$(".kol5").html(n--);*/
+			$(document).on("click",".plusbtn",function() {
+			var n = parseInt($(this).closest('tr').find(".kol5").html());
+				if(n<20) {
+			$(this).closest('tr').find(".kol5").html(++n);
+			}
+			});
+			$(document).on("click",".minusbtn",function() {
+			var n = parseInt($(this).closest('tr').find(".kol5").html());
+			if(n>0) {
+			$(this).closest('tr').find(".kol5").html(--n);
+			}
+});
+});
+			
+
+</script>
+</head>
+<body>
+<div id="logo"></div>
+<textarea placeholder="To do stuff" id="my-input"></textarea>
+<br/>
+<button class="plus">
+Click me to add!
+</button>	
+<table rows="2" cols="5" class="table">
+<tr>
+<td>Naziv</td>
+<td colspan="3">Actions</td>
+<td>Kolicina</td>
+</tr>
+<tr>
+<td class="zadaca">Zadaca</td>
+<td class="rem">X</td>
+<td class="add">Yes</td>
+<td class="edit">Edit</td>
+<td class="plusbtn">+</td>
+<td class="minusbtn">-</td>
+<td class="kol5">0</td>
+</tr>
+</table>
+</body>
+</html>
+	
